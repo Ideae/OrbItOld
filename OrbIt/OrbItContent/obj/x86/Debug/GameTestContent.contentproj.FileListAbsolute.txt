@@ -1,0 +1,2 @@
+C:\Users\Zack\documents\visual studio 2010\Projects\GameTest\GameTest\GameTestContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTestContent\obj\x86\Debug\GameTestContent.contentprojResolveAssemblyReference.cache

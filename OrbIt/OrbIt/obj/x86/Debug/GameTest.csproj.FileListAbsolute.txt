@@ -1,0 +1,30 @@
+C:\Users\Zack\documents\visual studio 2010\Projects\GameTest\GameTest\GameTest\bin\x86\Debug\Content\plr1.xnb
+C:\Users\Zack\documents\visual studio 2010\Projects\GameTest\GameTest\GameTest\bin\x86\Debug\GameTest.exe
+C:\Users\Zack\documents\visual studio 2010\Projects\GameTest\GameTest\GameTest\bin\x86\Debug\GameTest.pdb
+C:\Users\Zack\documents\visual studio 2010\Projects\GameTest\GameTest\GameTest\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Zack\documents\visual studio 2010\Projects\GameTest\GameTest\GameTest\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Zack\documents\visual studio 2010\Projects\GameTest\GameTest\GameTest\obj\x86\Debug\GameTest.exe
+C:\Users\Zack\documents\visual studio 2010\Projects\GameTest\GameTest\GameTest\obj\x86\Debug\GameTest.pdb
+C:\Users\Zack\Documents\Visual Studio 2010\Projects\GameTest\GameTest\GameTest\bin\x86\Debug\Content\plr2.xnb
+C:\Users\Zack\documents\visual studio 2010\Projects\GameTest\GameTest\GameTest\bin\x86\Debug\Content\orangesphere.xnb
+C:\Users\Zack\documents\visual studio 2010\Projects\GameTest\GameTest\GameTest\bin\x86\Debug\Content\greensphere.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\orangesphere.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\greensphere.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\GameTest.exe
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\GameTest.pdb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\obj\x86\Debug\GameTest.csprojResolveAssemblyReference.cache
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\obj\x86\Debug\GameTest.exe
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\obj\x86\Debug\GameTest.pdb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\pinksphere.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\purplesphere.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\yellowsphere.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\bluesphere.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\redsphere.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\obj\x86\Debug\GameTest.GameForm.resources
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\obj\x86\Debug\GameTest.csproj.GenerateResource.Cache
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\grass.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\whitetile.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\whitecircle.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\whitelaser.xnb
+C:\Users\Zack\Devstuff\Dev\2\GameTest\GameTest\GameTest\bin\x86\Debug\Content\enemy1.xnb

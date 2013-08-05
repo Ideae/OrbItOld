@@ -1,0 +1,2 @@
+C:\Users\Zack\Devstuff\OrbIt\OrbIt\OrbItContent\obj\x86\Debug\OrbItContent.contentprojResolveAssemblyReference.cache
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbItContent\obj\x86\Debug\ResolveAssemblyReference.cache
