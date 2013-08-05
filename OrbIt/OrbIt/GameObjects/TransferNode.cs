@@ -10,16 +10,16 @@ namespace OrbIt.GameObjects
 {
     public class TransferNode : Node
     {
-        public TransferNode(Room room) : base(room) { texture = room.game1.textureDict["pinksphere"]; }
+        public TransferNode(Room room) : base(room) { texture = room.game1.textureDict[Game1.tn.pinksphere]; }
 
         public TransferNode(float Multiplier, float rangeRadius, float radius, Room room) : base(Multiplier, rangeRadius, radius, room) {
-            texture = room.game1.textureDict["pinksphere"];
+            texture = room.game1.textureDict[Game1.tn.pinksphere];
         }
 
         public TransferNode(float Multiplier, float rangeRadius, Vector2 Pos, bool isAct, float radius, Room room)
             : base(Multiplier, rangeRadius, Pos, isAct, radius, room)
         {
-            texture = room.game1.textureDict["pinksphere"];
+            texture = room.game1.textureDict[Game1.tn.pinksphere];
         }
 
         public override void ApplyEffect(MoveableObject obj)

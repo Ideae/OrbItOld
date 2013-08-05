@@ -25,3 +25,17 @@ C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\obj\x86\Debug\GenerateResource.read.1.
 C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\obj\x86\Debug\OrbIt.exe
 C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\obj\x86\Debug\OrbIt.pdb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\bluesphere.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\redsphere.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\orangesphere.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\greensphere.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\pinksphere.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\purplesphere.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\yellowsphere.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\grass.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\whitetile.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\whitecircle.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\whitelaser.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\Content\enemy1.xnb
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\OrbIt.exe
+C:\Users\Zack\Developer\OrbIt\OrbIt\OrbIt\bin\x86\Debug\OrbIt.pdb

@@ -9,16 +9,16 @@ using Microsoft.Xna.Framework.Graphics;
 using OrbIt.LevelObjects;
 
 namespace OrbIt.GameObjects {
-    public abstract class GameObject {
+    public class GameObject {
 
         
 
 
         //public abstract void Initialize();
 
-        public abstract void Update(GameTime gametime);
+        public virtual void Update(GameTime gametime) { }
 
-        public abstract void Draw(SpriteBatch spritebatch);
+        public virtual void Draw(SpriteBatch spritebatch) { }
 
     }
 }

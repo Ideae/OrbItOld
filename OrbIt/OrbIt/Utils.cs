@@ -4,21 +4,26 @@ using System.Linq;
 using System.Text;
 using OrbIt.GameObjects;
 using Microsoft.Xna.Framework;
+using OrbIt.LevelObjects;
 
 namespace OrbIt {
     public class Utils {
 
+        
+
         public static bool checkCollision(MoveableObject o1, MoveableObject o2)
         {
+            
             if (Vector2.DistanceSquared(o1.position, o2.position) <= (((o1.radius) + (o2.radius)) * ((o1.radius) + (o2.radius))))
+            {
                 return true;
+            }
             return false;
         }
 
         public static void resolveCollision(MoveableObject o1, MoveableObject o2)
         {
-            if (checkCollision(o1, o2))
-            {
+            
                 /*Console.WriteLine("Collision Occured.");
                 o1.IsActive = false;
                 o2.IsActive = false;
@@ -38,7 +43,7 @@ namespace OrbIt {
                 o2.velocity.Y = o2.velocity.Y + pvalue * o1.mass * normal.Y;
                 //if (game1.fixCollisionOn)
                     fixCollision(o1, o2);
-            }
+            
         
         }
 
@@ -61,5 +66,12 @@ namespace OrbIt {
             }
             else return;
         }
+
+        public static Vector2 projection(Vector2 aa, Vector2 bb)
+        {
+            Vector2 proj = (Vector2.Dot(aa,bb)/bb.LengthSquared())*bb;
+            return proj;
+        }
+
     }
 }

@@ -133,6 +133,7 @@
     <Compile Include="GameObjects\GravityNode.cs" />
     <Compile Include="GravNode.cs" />
     <Compile Include="GameObjects\Node.cs" />
+    <Compile Include="OldGame1.cs" />
     <Compile Include="PhysicsEngine.cs" />
     <Compile Include="IPhysicsObject.cs" />
     <Compile Include="PhysicsProperty.cs" />

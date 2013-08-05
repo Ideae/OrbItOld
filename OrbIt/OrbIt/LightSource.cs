@@ -5,9 +5,10 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using OrbIt.GameObjects;
 
 namespace OrbIt {
-    public class LightSource {
+    public class LightSource : GameObject {
         public Color col;
         public Vector2 position;
         public float r, g, b, rinitial, ginitial, binitial;
@@ -21,6 +22,7 @@ namespace OrbIt {
         public bool acycle, scycle,ccycle;
         public Random rand;
         public float rrand,grand,brand;
+        public string colorMode;
         
 
         public LightSource(Texture2D Texture) {
@@ -38,6 +40,7 @@ namespace OrbIt {
             acycle = scycle = ccycle = true;
             rand = new Random();
             rrand = grand = brand = -1f;
+            colorMode = "normal";
 
         }
         public LightSource(float red, float green, float blue, float alpha, float alphaRange, float scale, float scaleRange,  int period, Texture2D Texture) {
@@ -56,13 +59,32 @@ namespace OrbIt {
             acycle = false;
             rand = new Random();
             rrand = grand = brand = -1f;
+            colorMode = "normal";
         }
 
         public void setIncrements(float r, float g, float b, float a, float s) {
             rinc = r; ginc = g; binc = b; ainc = a; sinc = s;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 vect) {
+        public override void Update(GameTime gametime)
+        { 
+            if (colorMode.Equals("normal"))
+                Cycle();
+            else if (colorMode.Equals("randomColors"))
+                CycleRandColors(rand.Next(1000));
+            else if (colorMode.Equals("flashing"))
+                CycleFlashing(rand.Next(1000));
+            else
+                Cycle();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            //uhhh
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 vect)
+        {
             spriteBatch.Draw(texture, vect, null, new Color(r, g, b, a), 0f, new Vector2(texture.Width / 2, texture.Height / 2), scale, SpriteEffects.None, 0f);
             //spriteBatch.Draw(
         }

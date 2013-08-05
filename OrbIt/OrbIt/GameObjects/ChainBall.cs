@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace OrbIt.GameObjects {
     public class ChainBall : GameObject {
@@ -16,9 +18,13 @@ namespace OrbIt.GameObjects {
 
         public ChainBall()
         {
-            shape = new Circle(25.0f);
+            //shape = new Circle(25.0f);
            
         }
+
+        public override void Update(GameTime gametime) { }
+
+        public override void Draw(SpriteBatch spritebatch) { }
     }
 }
 

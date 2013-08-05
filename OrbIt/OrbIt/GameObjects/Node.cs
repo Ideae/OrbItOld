@@ -76,11 +76,7 @@ namespace OrbIt.GameObjects
             isActive = true;
 
         }
-        public void updateNode()
-        {
-            position += velocity;
         
-        }
 
         public void setRadius(float newRadius)
         {
@@ -96,7 +92,7 @@ namespace OrbIt.GameObjects
             return dist;
         }
 
-        public virtual void ApplyEffect(GameObject obj)
+        public virtual void ApplyEffect(MoveableObject obj)
         {
             
         }
@@ -113,7 +109,8 @@ namespace OrbIt.GameObjects
                         {
                             MoveableObject moveableobject = (MoveableObject)gameobject;
                             ApplyEffect(moveableobject);
-                            Utils.resolveCollision(this, moveableobject);
+                            if (Utils.checkCollision(this, moveableobject))
+                                Utils.resolveCollision(this, moveableobject);
                         }
                     }
                 }
@@ -128,6 +125,12 @@ namespace OrbIt.GameObjects
             {
                 spritebatch.Draw(texture, position - room.camera.position, null, Color.White, 0, new Vector2(texture.Width / 2, texture.Height / 2), 1, SpriteEffects.None, 0);
             }
+        }
+
+        //old method
+        public void updateNode()
+        {
+            position += velocity;
         }
     }
 }

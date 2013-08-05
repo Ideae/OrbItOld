@@ -54,26 +54,26 @@ namespace OrbIt
         {
             if (collisionCheckBox.Checked)
             {
-                game.collisionOn = true;
+                game.room1.PropertiesDict["collisionOn"] = true;
             }
-            else game.collisionOn = false;
+            else game.room1.PropertiesDict["collisionOn"] = false;
         }
 
         private void MapCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (MapCheckBox.Checked)
             {
-                game.mapOn = true;
+                game.room1.PropertiesDict["mapOn"] = true;
             }
-            else game.mapOn = false;
+            else game.room1.PropertiesDict["mapOn"] = false;
         }
 
         private void clrOrbsButton_Click(object sender, EventArgs e)
         {
-            int count = game.orbs.Count;
+            int count = game.room1.GameObjectDict["orbs"].Count;
             for (int i = 0; i < count; i++)
             {
-                game.orbs.RemoveAt(0);
+                game.room1.GameObjectDict["orbs"].RemoveAt(0);
             }
         }
 
@@ -81,48 +81,48 @@ namespace OrbIt
         {
             if (fixCollisionCheckBox.Checked)
             {
-                game.fixCollisionOn = true;
+                game.room1.PropertiesDict["fixCollisionOn"] = true;
             }
-            else game.fixCollisionOn = false;
+            else game.room1.PropertiesDict["fixCollisionOn"] = false;
         }
 
         private void comboBoxColormode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxColormode.Text.Equals("normal")) game.level1.colorMode = "normal";
-            else if (comboBoxColormode.Text.Equals("disco")) game.level1.colorMode = "disco";
+            if (comboBoxColormode.Text.Equals("normal")) game.room1.level.colorMode = "normal";
+            else if (comboBoxColormode.Text.Equals("disco")) game.room1.level.colorMode = "disco";
             else if (comboBoxColormode.Text.Equals("wave") || comboBoxColormode.Text.Equals("wave2") ||comboBoxColormode.Text.Equals("wave3")) 
-            { 
-                game.level1.colorMode = comboBoxColormode.Text;
-                for (int x = 0; x < game.level1.tileAmount.X; x++)
-                    for (int y = 0; y < game.level1.tileAmount.Y; y++)
-                        for (int z = 0; z < game.level1.tileAmount.Z; z++)
-                        { game.level1.tile[x, y, z].color = new Microsoft.Xna.Framework.Color(((x + 1) * 15) % 255, ((y + 1) * 15) % 255, ((z + 1) * 15) % 255); }
+            {
+                game.room1.level.colorMode = comboBoxColormode.Text;
+                for (int x = 0; x < game.room1.level.tileAmount.X; x++)
+                    for (int y = 0; y < game.room1.level.tileAmount.Y; y++)
+                        for (int z = 0; z < game.room1.level.tileAmount.Z; z++)
+                        { game.room1.level.tile[x, y, z].color = new Microsoft.Xna.Framework.Color(((x + 1) * 15) % 255, ((y + 1) * 15) % 255, ((z + 1) * 15) % 255); }
             }
         }
 
         private void fullLightCB_CheckedChanged(object sender, EventArgs e) {
             if (fullLightCB.Checked)
             {
-                game.fullLightOn = true;
+                game.room1.PropertiesDict["fullLightOn"] = true;
             }
-            else game.fullLightOn = false;
+            else game.room1.PropertiesDict["fullLightOn"] = false;
         }
 
         private void multLightCB_CheckedChanged(object sender, EventArgs e) {
             if (multLightCB.Checked)
             {
-                game.smallLightsOn = true;
+                game.room1.PropertiesDict["smallLightsOn"] = true;
             }
-            else game.smallLightsOn = false;
+            else game.room1.PropertiesDict["smallLightsOn"] = false;
         }
 
         private void bulletsOnCB_CheckedChanged(object sender, EventArgs e)
         {
             if (bulletsOnCB.Checked)
             {
-                game.bulletsOn = true;
+                game.room1.PropertiesDict["bulletsOn"] = true;
             }
-            else game.bulletsOn = false;
+            else game.room1.PropertiesDict["bulletsOn"] = false;
         }
 
         

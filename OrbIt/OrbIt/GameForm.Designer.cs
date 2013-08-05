@@ -193,8 +193,6 @@
             // fullLightCB
             // 
             this.fullLightCB.AutoSize = true;
-            this.fullLightCB.Checked = true;
-            this.fullLightCB.CheckState = System.Windows.Forms.CheckState.Checked;
             this.fullLightCB.Location = new System.Drawing.Point(11, 237);
             this.fullLightCB.Name = "fullLightCB";
             this.fullLightCB.Size = new System.Drawing.Size(100, 17);

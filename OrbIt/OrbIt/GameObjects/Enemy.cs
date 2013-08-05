@@ -53,6 +53,22 @@ namespace OrbIt.GameObjects
             else if (position.X > room.player1.position.X) { position.X -= VelMultiplier; }
             if (position.Y > room.player1.position.Y) { position.Y -= VelMultiplier; }
             else if (position.Y < room.player1.position.Y) { position.Y += VelMultiplier; }
+
+            foreach (Orb bullet in room.GameObjectDict["bullets"])
+            {
+                if (Utils.checkCollision(this, bullet))
+                {
+                    bullet.isActive = false;
+                    //room.GameObjectDict["bullets"].Remove(bullet);
+
+                    hitpoints -= 1;
+                    if (hitpoints <= 0)
+                    {
+                        isActive = false;
+                        //room.GameObjectDict["enemies"].Remove(this);
+                    }
+                }
+            }
         }
 
     }

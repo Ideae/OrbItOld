@@ -24,5 +24,19 @@ namespace OrbIt.GameObjects
         {
             shape = new Circle(25.0f);
         }
+
+        public override void Update(GameTime gametime)
+        {
+            base.Update(gametime);
+
+            if (position.X + radius > room.level.levelwidth)
+                position.X = room.level.levelwidth - radius;
+            if (position.X - radius < 0)
+                position.X = radius;
+            if (position.Y + radius > room.level.levelheight)
+                position.Y = room.level.levelheight - radius;
+            if (position.Y - radius < 0)
+                position.Y = radius;
+        }
     }
 }

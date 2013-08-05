@@ -12,17 +12,17 @@ namespace OrbIt.GameObjects
     {
         public bool temporarySlow;
         public SlowNode(Room room) : base(room) { temporarySlow = true;
-        texture = room.game1.textureDict["yellowsphere"];
+        texture = room.game1.textureDict[Game1.tn.yellowsphere];
         }
 
         public SlowNode(float Multiplier, float rangeRadius, float radius, Room room) : base(Multiplier, rangeRadius, radius, room) { temporarySlow = true;
-        texture = room.game1.textureDict["yellowsphere"];
+        texture = room.game1.textureDict[Game1.tn.yellowsphere];
         }
 
         public SlowNode(float Multiplier, float rangeRadius, Vector2 Pos, bool isAct, float radius, Room room)
             : base(Multiplier, rangeRadius, Pos, isAct, radius, room)
         { temporarySlow = true;
-        texture = room.game1.textureDict["yellowsphere"];
+        texture = room.game1.textureDict[Game1.tn.yellowsphere];
         }
 
         public override void ApplyEffect(MoveableObject obj)

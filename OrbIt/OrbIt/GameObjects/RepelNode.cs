@@ -10,14 +10,14 @@ namespace OrbIt.GameObjects
 {
     public class RepelNode : Node
     {
-        public RepelNode(Room room) : base(room) { texture = room.game1.textureDict["purplesphere"]; }
+        public RepelNode(Room room) : base(room) { texture = room.game1.textureDict[Game1.tn.purplesphere]; }
 
         public RepelNode(float Multiplier, float rangeRadius, float radius, Room room) : base(Multiplier, rangeRadius, radius, room) 
-        { texture = room.game1.textureDict["purplesphere"]; }
+        { texture = room.game1.textureDict[Game1.tn.purplesphere]; }
 
         public RepelNode(float Multiplier, float rangeRadius, Vector2 Pos, bool isAct, float radius, Room room)
             : base(Multiplier, rangeRadius, Pos, isAct, radius, room)
-        { texture = room.game1.textureDict["purplesphere"]; }
+        { texture = room.game1.textureDict[Game1.tn.purplesphere]; }
 
 
         public override void ApplyEffect(MoveableObject obj)

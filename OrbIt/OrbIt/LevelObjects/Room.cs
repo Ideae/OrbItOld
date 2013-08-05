@@ -29,8 +29,11 @@ namespace OrbIt.LevelObjects {
         public Level level;
         public Tileset tileset;
         public Player player1;
-        
 
+
+
+        public enum texNames { orangecircle, redcircle };
+        
         public Dictionary<string, List<GameObject>> GameObjectDict = new Dictionary<string, List<GameObject>>();
         
         
@@ -51,26 +54,78 @@ namespace OrbIt.LevelObjects {
             setDefaultLists();
             setDefaultProperties();
             camera = new Camera();
+            player1 = new Player(this);
+            game1 = game;
 
         }
 
-        public void addList(string name, List<GameObject> list)
+        public void Update(GameTime gametime)
         {
-            GameObjectDict.Add(name, list);
+
+
+            //Update every gameobject from every list in the GameObjectDict
+            foreach(KeyValuePair<string,List<GameObject>> entry in GameObjectDict) //use entry.key or entry.value
+            {
+                foreach (GameObject gameobject in entry.Value)
+                {
+                    gameobject.Update(gametime);
+                }
+            }
+            //remove inActive gameobjects
+            foreach (KeyValuePair<string, List<GameObject>> entry in GameObjectDict) //use entry.key or entry.value
+            {
+                List<GameObject> toRemove = new List<GameObject>();
+                foreach (GameObject gameobject in entry.Value)
+                {
+                    if (gameobject is MoveableObject)
+                    {
+                        MoveableObject mo = (MoveableObject)gameobject;
+                        if (!mo.isActive)
+                        {
+                            toRemove.Add(gameobject);
+                            //entry.Value.Remove(mo);
+                        }
+                    }
+                }
+                foreach (GameObject gameobject in toRemove)
+                {
+                    entry.Value.Remove(gameobject);
+                }
+            }
+        }
+
+        public void Draw(SpriteBatch spritebatch)
+        {
+            
+
+            foreach (KeyValuePair<string, List<GameObject>> entry in GameObjectDict) //use entry.key or entry.value
+            {
+                foreach (GameObject gameobject in entry.Value)
+                {
+                    gameobject.Draw(spritebatch);
+                }
+            }
+
+
+        
         }
 
         public void setDefaultLists()
         {
-
             addList("orbs", new List<GameObject>());
             addList("gnodes", new List<GameObject>());
             addList("rnodes", new List<GameObject>());
             addList("snodes", new List<GameObject>());
             addList("tnodes", new List<GameObject>());
-            //List<GameObject> enemies = new List<GameObject>(); addList("enemies", enemies);
-            //List<GameObject> bullets = new List<GameObject>(); addList("bullets", bullets);
-            //List<GameObject> lasers = new List<GameObject>(); addList("lasers", lasers);
-            //List<GameObject> beamorbs = new List<GameObject>(); addList("beamorbs", beamorbs);
+            addList("enemies", new List<GameObject>());
+            addList("bullets", new List<GameObject>());
+            //addList("lasers", new List<GameObject>());
+            //addList("beamorbs", new List<GameObject>());
+        }
+
+        public void addList(string name, List<GameObject> list)
+        {
+            GameObjectDict.Add(name, list);
         }
 
         public void setDefaultProperties()
@@ -85,30 +140,7 @@ namespace OrbIt.LevelObjects {
             PropertiesDict.Add("fullLightOn", false);
             PropertiesDict.Add("smallLightsOn", false);
             PropertiesDict.Add("bulletsOn", false);
-        }
-
-
-        public void Update(GameTime gametime)
-        {
-            foreach(KeyValuePair<string,List<GameObject>> entry in GameObjectDict) //use entry.key or entry.value
-            {
-                foreach (GameObject gameobject in entry.Value)
-                {
-                    gameobject.Update(gametime);
-                }
-            }
-        }
-
-        public void Draw(SpriteBatch spritebatch)
-        {
-            foreach (KeyValuePair<string, List<GameObject>> entry in GameObjectDict) //use entry.key or entry.value
-            {
-                foreach (GameObject gameobject in entry.Value)
-                {
-                    gameobject.Draw(spritebatch);
-                }
-            }
-        
+            PropertiesDict.Add("enemiesOn", false);
         }
     }
 }

@@ -40,7 +40,8 @@ namespace OrbIt.GameObjects
             textureNum = 0;
             radius = 25;
             mass = 1;
-            texture = room.game1.textureDict["orangesphere"];
+            
+            texture = room.game1.textureDict[Game1.tn.orangesphere];
         }
 
         public Orb(float vmult, float amult, float jmult, Room room) : base(room)
@@ -56,7 +57,7 @@ namespace OrbIt.GameObjects
             textureNum = 0;
             radius = 25;
             mass = 1;
-            texture = room.game1.textureDict["orangesphere"];
+            texture = room.game1.textureDict[Game1.tn.orangesphere];
         }
 
         public void InitOrb(Double angle, Vector2 startPos)
@@ -127,7 +128,8 @@ namespace OrbIt.GameObjects
                         {
                             MoveableObject moveableobject = (MoveableObject)gameobject;
                             //ApplyEffect(moveableobject);
-                            Utils.resolveCollision(this, moveableobject);
+                            if (Utils.checkCollision(this,moveableobject))
+                                Utils.resolveCollision(this, moveableobject);
                         }
                     }
                 }
@@ -137,8 +139,10 @@ namespace OrbIt.GameObjects
 
         public override void Draw(SpriteBatch spritebatch)
         {
+            
             if (isActive)
             {
+                
                 if (radius != texture.Width / 2)
                 {
                     float scale = radius / (texture.Width / 2);

@@ -11,18 +11,18 @@ namespace OrbIt.GameObjects
     public class GravityNode : Node
     {
         public GravityNode(Room room) : base(room) {
-            texture = room.game1.textureDict["greensphere"];
+            texture = room.game1.textureDict[Game1.tn.greensphere];
         }
 
         public GravityNode(float Multiplier, float rangeRadius, float radius, Room room) : base(Multiplier, rangeRadius, radius, room)
         { 
-            texture = room.game1.textureDict["greensphere"]; 
+            texture = room.game1.textureDict[Game1.tn.greensphere]; 
         }
 
         public GravityNode(float Multiplier, float rangeRadius, Vector2 Pos, bool isAct, float radius, Room room)
             : base(Multiplier, rangeRadius, Pos, isAct, radius, room)
         {
-            texture = room.game1.textureDict["greensphere"];
+            texture = room.game1.textureDict[Game1.tn.greensphere];
         }
 
         public override void ApplyEffect(MoveableObject obj)
