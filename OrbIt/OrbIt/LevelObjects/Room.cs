@@ -23,7 +23,7 @@ namespace OrbIt.LevelObjects {
         public List<Laser> lasers = new List<Laser>();
         public List<Orb> beamorbs = new List<Orb>();
         */
-
+        //Test
         public Game1 game1;
         public Camera camera;
         public Level level;
