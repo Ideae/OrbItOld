@@ -54,6 +54,8 @@
             this.fullLightCB = new System.Windows.Forms.CheckBox();
             this.multLightCB = new System.Windows.Forms.CheckBox();
             this.bulletsOnCB = new System.Windows.Forms.CheckBox();
+            this.clearNodesB = new System.Windows.Forms.Button();
+            this.slowdownB = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // treeView1
@@ -136,7 +138,7 @@
             // 
             // clrOrbsButton
             // 
-            this.clrOrbsButton.Location = new System.Drawing.Point(229, 264);
+            this.clrOrbsButton.Location = new System.Drawing.Point(229, 231);
             this.clrOrbsButton.Name = "clrOrbsButton";
             this.clrOrbsButton.Size = new System.Drawing.Size(75, 23);
             this.clrOrbsButton.TabIndex = 6;
@@ -184,7 +186,7 @@
             // ControlsLabel
             // 
             this.ControlsLabel.AutoSize = true;
-            this.ControlsLabel.Location = new System.Drawing.Point(148, 292);
+            this.ControlsLabel.Location = new System.Drawing.Point(12, 370);
             this.ControlsLabel.Name = "ControlsLabel";
             this.ControlsLabel.Size = new System.Drawing.Size(156, 130);
             this.ControlsLabel.TabIndex = 12;
@@ -223,11 +225,33 @@
             this.bulletsOnCB.UseVisualStyleBackColor = true;
             this.bulletsOnCB.CheckedChanged += new System.EventHandler(this.bulletsOnCB_CheckedChanged);
             // 
+            // clearNodesB
+            // 
+            this.clearNodesB.Location = new System.Drawing.Point(229, 261);
+            this.clearNodesB.Name = "clearNodesB";
+            this.clearNodesB.Size = new System.Drawing.Size(75, 23);
+            this.clearNodesB.TabIndex = 16;
+            this.clearNodesB.Text = "Clear Nodes";
+            this.clearNodesB.UseVisualStyleBackColor = true;
+            this.clearNodesB.Click += new System.EventHandler(this.clearNodesB_Click);
+            // 
+            // slowdownB
+            // 
+            this.slowdownB.Location = new System.Drawing.Point(229, 291);
+            this.slowdownB.Name = "slowdownB";
+            this.slowdownB.Size = new System.Drawing.Size(75, 23);
+            this.slowdownB.TabIndex = 17;
+            this.slowdownB.Text = "Slowdown";
+            this.slowdownB.UseVisualStyleBackColor = true;
+            this.slowdownB.Click += new System.EventHandler(this.slowdownB_Click);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 431);
+            this.ClientSize = new System.Drawing.Size(316, 509);
+            this.Controls.Add(this.slowdownB);
+            this.Controls.Add(this.clearNodesB);
             this.Controls.Add(this.bulletsOnCB);
             this.Controls.Add(this.multLightCB);
             this.Controls.Add(this.fullLightCB);
@@ -266,6 +290,8 @@
         private System.Windows.Forms.CheckBox fullLightCB;
         private System.Windows.Forms.CheckBox multLightCB;
         private System.Windows.Forms.CheckBox bulletsOnCB;
+        private System.Windows.Forms.Button clearNodesB;
+        private System.Windows.Forms.Button slowdownB;
 
     }
 }

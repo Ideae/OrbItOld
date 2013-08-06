@@ -27,7 +27,7 @@ namespace OrbIt
         Orb targetOrb;
 
         public Room room1;
-        Camera camera;
+        public Camera camera;
 
         
         //texture names
@@ -151,7 +151,7 @@ namespace OrbIt
             //level1, tileset1
             List<Texture2D> txs = new List<Texture2D>();
             txs.Add(textureDict[tn.grass]);
-            txs.Add(textureDict[tn.orangesphere]);
+            txs.Add(textureDict[tn.whitecircle]);
             String txcodes = "A B";
             room1.tileset = new Tileset();
             room1.tileset.createTileset(txcodes, txs);
@@ -173,9 +173,13 @@ namespace OrbIt
             }
 
             room1.level = new Level();
+            room1.level.tileLength = new Vector3(25, 25, 20);
             room1.level.readTiles(mapTileCodes);
             room1.level.tileset = room1.tileset;
             //level1 = new Level("Zack'sLevel",new Vector3(50, 50, 20),new Vector3(20, 12, 0), 
+
+
+
 
             room1.player1.playerLight = new LightSource(0.5f, 0.5f, 0.5f, 0.6f, 0.0f, 1.0f, 0.0f, 100, textureDict[tn.whitecircle]);
             lightsource = new LightSource(0.5f, 0.5f, 0.5f, 0.6f, 0.0f, 300.0f, 1.0f, 100, textureDict[tn.whitecircle]);
@@ -224,7 +228,7 @@ namespace OrbIt
                 this.Exit();
 
             room1.Update(gameTime);
-
+            room1.player1.Update(gameTime);
 
             totalMilliseconds += gameTime.ElapsedGameTime.Milliseconds;
             shootTimer += gameTime.ElapsedGameTime.Milliseconds;
@@ -445,7 +449,7 @@ namespace OrbIt
             {
                 Double angleDelta = 0;
 
-                Console.WriteLine("#Orbs: " + room1.GameObjectDict["orbs"].Count);
+                //Console.WriteLine("#Orbs: " + room1.GameObjectDict["orbs"].Count);
 
                 if (weaponNumber == 1)
                 {

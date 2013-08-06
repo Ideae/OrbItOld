@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using OrbIt.GameObjects;
 
 namespace OrbIt
 {
@@ -68,14 +69,7 @@ namespace OrbIt
             else game.room1.PropertiesDict["mapOn"] = false;
         }
 
-        private void clrOrbsButton_Click(object sender, EventArgs e)
-        {
-            int count = game.room1.GameObjectDict["orbs"].Count;
-            for (int i = 0; i < count; i++)
-            {
-                game.room1.GameObjectDict["orbs"].RemoveAt(0);
-            }
-        }
+        
 
         private void fixCollisionCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -123,6 +117,93 @@ namespace OrbIt
                 game.room1.PropertiesDict["bulletsOn"] = true;
             }
             else game.room1.PropertiesDict["bulletsOn"] = false;
+        }
+
+        private void clrOrbsButton_Click(object sender, EventArgs e)
+        {
+            int count = game.room1.GameObjectDict["orbs"].Count;
+            for (int i = 0; i < count; i++)
+            {
+                game.room1.GameObjectDict["orbs"].RemoveAt(0);
+            }
+        }
+
+        private void clearNodesB_Click(object sender, EventArgs e)
+        {
+            int count = game.room1.GameObjectDict["gnodes"].Count;
+            for (int i = 0; i < count; i++)
+            {
+                game.room1.GameObjectDict["gnodes"].RemoveAt(0);
+            }
+            count = game.room1.GameObjectDict["rnodes"].Count;
+            for (int i = 0; i < count; i++)
+            {
+                game.room1.GameObjectDict["rnodes"].RemoveAt(0);
+            }
+            count = game.room1.GameObjectDict["snodes"].Count;
+            for (int i = 0; i < count; i++)
+            {
+                game.room1.GameObjectDict["snodes"].RemoveAt(0);
+            }
+            count = game.room1.GameObjectDict["tnodes"].Count;
+            for (int i = 0; i < count; i++)
+            {
+                game.room1.GameObjectDict["tnodes"].RemoveAt(0);
+            }
+        }
+
+        private void slowdownB_Click(object sender, EventArgs e)
+        {
+            int count = game.room1.GameObjectDict["orbs"].Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (game.room1.GameObjectDict["orbs"][i] is MoveableObject)
+                {
+                    MoveableObject mo = (MoveableObject)game.room1.GameObjectDict["orbs"][i];
+                    mo.velocity.X *= 0.5f;
+                    mo.velocity.Y *= 0.5f;
+                }
+            }
+            count = game.room1.GameObjectDict["gnodes"].Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (game.room1.GameObjectDict["gnodes"][i] is MoveableObject)
+                {
+                    MoveableObject mo = (MoveableObject)game.room1.GameObjectDict["gnodes"][i];
+                    mo.velocity.X *= 0.5f;
+                    mo.velocity.Y *= 0.5f;
+                }
+            }
+            count = game.room1.GameObjectDict["rnodes"].Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (game.room1.GameObjectDict["rnodes"][i] is MoveableObject)
+                {
+                    MoveableObject mo = (MoveableObject)game.room1.GameObjectDict["rnodes"][i];
+                    mo.velocity.X *= 0.5f;
+                    mo.velocity.Y *= 0.5f;
+                }
+            }
+            count = game.room1.GameObjectDict["snodes"].Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (game.room1.GameObjectDict["snodes"][i] is MoveableObject)
+                {
+                    MoveableObject mo = (MoveableObject)game.room1.GameObjectDict["snodes"][i];
+                    mo.velocity.X *= 0.5f;
+                    mo.velocity.Y *= 0.5f;
+                }
+            }
+            count = game.room1.GameObjectDict["tnodes"].Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (game.room1.GameObjectDict["tnodes"][i] is MoveableObject)
+                {
+                    MoveableObject mo = (MoveableObject)game.room1.GameObjectDict["tnodes"][i];
+                    mo.velocity.X *= 0.5f;
+                    mo.velocity.Y *= 0.5f;
+                }
+            }
         }
 
         

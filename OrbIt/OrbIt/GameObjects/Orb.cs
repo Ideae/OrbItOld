@@ -146,11 +146,11 @@ namespace OrbIt.GameObjects
                 if (radius != texture.Width / 2)
                 {
                     float scale = radius / (texture.Width / 2);
-                    spritebatch.Draw(texture, position - room.camera.position, null, Color.White, 0, new Vector2(texture.Width / 2, texture.Height / 2), scale, SpriteEffects.None, 0);
+                    spritebatch.Draw(texture, position - room.game1.camera.position, null, Color.White, 0, new Vector2(texture.Width / 2, texture.Height / 2), scale, SpriteEffects.None, 0);
                 }
                 else
                 {
-                    spritebatch.Draw(texture, position - room.camera.position, null, Color.White, 0, new Vector2(texture.Width / 2, texture.Height / 2), 1, SpriteEffects.None, 0);
+                    spritebatch.Draw(texture, position - room.game1.camera.position, null, Color.White, 0, new Vector2(texture.Width / 2, texture.Height / 2), 1, SpriteEffects.None, 0);
                 }
             }
         }
