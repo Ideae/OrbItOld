@@ -29,6 +29,10 @@ namespace OrbIt.GameObjects
         {
             base.Update(gametime);
 
+            position += velocity;
+
+            wallBounce();
+            /*
             if (position.X + radius > room.level.levelwidth)
                 position.X = room.level.levelwidth - radius;
             if (position.X - radius < 0)
@@ -37,6 +41,8 @@ namespace OrbIt.GameObjects
                 position.Y = room.level.levelheight - radius;
             if (position.Y - radius < 0)
                 position.Y = radius;
+            */
+            
         }
     }
 }

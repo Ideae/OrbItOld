@@ -43,8 +43,8 @@ namespace OrbIt
         public float permSlowMult, tempSlowMult, slowRad;
         public float transferRad;
         public float initialOrbRadius;
-        //public bool wallBounce, gravityFreeze, tempSlow, collisionOn, mapOn,discoOn,fixCollisionOn, bulletsOn;
-        public bool fullLightOn, smallLightsOn;
+
+        public bool mouseMovementOn;
 
         Random rand;
        
@@ -127,6 +127,8 @@ namespace OrbIt
 
             camera = new Camera();
             camera.position = new Vector2(0, 0);
+
+            mouseMovementOn = false;
 
 
             //room1.player1 = new Player(room1);
@@ -367,6 +369,14 @@ namespace OrbIt
             {
                 targetOrb.velocity = targetOrb.velocity / 2;
             }
+            if (keybState.IsKeyDown(Keys.Space))
+            {
+                mouseMovementOn = true;
+            }
+            else
+            {
+                mouseMovementOn = false;
+            }
 
 
             float xch = room1.player1.position.X;
@@ -441,6 +451,24 @@ namespace OrbIt
             float mouseY = mouseState.Y + camera.position.Y;
             float playerCenterX = room1.player1.position.X + (textureDict[tn.bluesphere].Width) / 2;
             float playerCenterY = room1.player1.position.Y + (textureDict[tn.bluesphere].Height) / 2;
+
+            
+
+
+            if (mouseMovementOn)
+            {
+                Vector2 mousePos = new Vector2(mouseX, mouseY);
+                Vector2 playerPos = new Vector2(playerCenterX, playerCenterY);
+                float distv = Vector2.Distance(mousePos, playerPos);
+                if (distv >= 150) distv = 150;
+                if (distv <= 20) distv = 20;
+                float nvx = (mouseX - playerCenterX) * 0.001f * distv;
+                float nvy = (mouseY - playerCenterY) * 0.001f * distv;
+                room1.player1.velocity.X = nvx;
+                room1.player1.velocity.Y = nvy;
+                Console.WriteLine(distv);
+            
+            }
 
             if (mouseState.X > graphics.PreferredBackBufferWidth) return;
             if (mouseState.Y > graphics.PreferredBackBufferHeight) return;
