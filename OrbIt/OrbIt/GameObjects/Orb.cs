@@ -108,6 +108,7 @@ namespace OrbIt.GameObjects
 
         public override void Update(GameTime gametime)
         {
+            base.Update(gametime);
             if (isActive)
             {
                 Acceleration.X += Jerk.X;
@@ -133,7 +134,7 @@ namespace OrbIt.GameObjects
                         }
                     }
                 }
-                wallBounce();
+                
             }
         }
 

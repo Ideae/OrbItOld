@@ -99,6 +99,7 @@ namespace OrbIt.GameObjects
 
         public override void Update(GameTime gametime)
         {
+            base.Update(gametime);
             if (isActive)
             {
                 foreach (KeyValuePair<string, List<GameObject>> entry in room.GameObjectDict) //use entry.key or entry.value
@@ -115,7 +116,7 @@ namespace OrbIt.GameObjects
                     }
                 }
                 position += velocity;
-                wallBounce();
+                
             }
         }
 

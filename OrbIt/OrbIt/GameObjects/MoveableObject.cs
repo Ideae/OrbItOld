@@ -24,9 +24,22 @@ namespace OrbIt.GameObjects {
             this.room = room;
         }
 
-        public override void Update(GameTime gametime){}
+        public override void Update(GameTime gametime)
+        {
+            if (isActive)
+            {
+                friction();
+                wallBounce();
+            
+            }
+        }
 
         public override void Draw(SpriteBatch spritebatch){}
+
+        public void friction()
+        {
+            velocity *= 0.995f;
+        }
 
         public void wallBounce()
         {
