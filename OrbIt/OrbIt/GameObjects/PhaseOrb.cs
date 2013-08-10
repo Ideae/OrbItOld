@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 using OrbIt.LevelObjects;
 namespace OrbIt.GameObjects
 {
-    public class Orb : MoveableObject
+    public class PhaseOrb : MoveableObject
     {
-        
+
         //public Vector2 Position;
         //public Vector2 Velocity;
         public Vector2 Acceleration;
@@ -20,15 +20,20 @@ namespace OrbIt.GameObjects
         public float JerkMultiplier;
         //public float radius;
         //public float mass;// { get { return 0; }
-            //private set; }
+        //private set; }
         public bool inSlow;
         public int slowsActive;
         public int textureNum;
 
         public LightSource lightsource;
         public Texture2D texture;
-        
-        public Orb(Room room) : base(room){
+
+        public Queue<Vector2> positions;
+        int timer;
+
+        public PhaseOrb(Room room)
+            : base(room)
+        {
             isActive = false;
             velocity = new Vector2(0, 0);
             Acceleration = new Vector2(0, 0);
@@ -41,11 +46,14 @@ namespace OrbIt.GameObjects
             radius = 25;
             mass = 1;
             collidable = true;
-            
+
             texture = room.game1.textureDict[Game1.tn.orangesphere];
+            positions = new Queue<Vector2>();
+            timer = 0;
         }
 
-        public Orb(float vmult, float amult, float jmult, Room room) : base(room)
+        public PhaseOrb(float vmult, float amult, float jmult, Room room)
+            : base(room)
         {
             isActive = false;
             velocity = new Vector2(0, 0);
@@ -60,6 +68,8 @@ namespace OrbIt.GameObjects
             mass = 1;
             texture = room.game1.textureDict[Game1.tn.orangesphere];
             collidable = true;
+            positions = new Queue<Vector2>();
+            timer = 0;
         }
 
         public void InitOrb(Double angle, Vector2 startPos)
@@ -86,7 +96,7 @@ namespace OrbIt.GameObjects
             isActive = true;
             slowsActive = 0;
 
-            
+
         }
 
         public void setOrbValues(float vmult, float amult, float jmult)
@@ -121,7 +131,7 @@ namespace OrbIt.GameObjects
 
                 position.X += velocity.X;
                 position.Y += velocity.Y;
-                
+
                 //collision
                 foreach (KeyValuePair<string, List<GameObject>> entry in room.GameObjectDict) //use entry.key or entry.value
                 {
@@ -131,21 +141,37 @@ namespace OrbIt.GameObjects
                         {
                             MoveableObject moveableobject = (MoveableObject)gameobject;
                             //ApplyEffect(moveableobject);
-                            if (Utils.checkCollision(this,moveableobject))
+                            if (Utils.checkCollision(this, moveableobject))
                                 Utils.resolveCollision(this, moveableobject);
                         }
                     }
                 }
-                
+                if (timer > 2)
+                {
+                    timer = 0;
+                    if (positions.Count < 10)
+                    {
+                        positions.Enqueue(position);
+                    }
+                    else
+                    {
+                        positions.Dequeue();
+                        positions.Enqueue(position);
+                    }
+                }
+                else
+                {
+                    timer++;
+                }
             }
         }
 
         public override void Draw(SpriteBatch spritebatch)
         {
-            
+
             if (isActive)
             {
-                
+
                 if (radius != texture.Width / 2)
                 {
                     float scale = radius / (texture.Width / 2);
@@ -153,6 +179,10 @@ namespace OrbIt.GameObjects
                 }
                 else
                 {
+                    foreach (Vector2 pos in positions)
+                    {
+                        spritebatch.Draw(texture, pos - room.game1.camera.position, null, Color.White, 0, new Vector2(texture.Width / 2, texture.Height / 2), 1, SpriteEffects.None, 0);
+                    }
                     spritebatch.Draw(texture, position - room.game1.camera.position, null, Color.White, 0, new Vector2(texture.Width / 2, texture.Height / 2), 1, SpriteEffects.None, 0);
                 }
             }
@@ -162,98 +192,9 @@ namespace OrbIt.GameObjects
         public void setRadius(float newRadius)
         {
             //get the new mass of the orb, based on the ratio between the new and old radius (the area of the circles)
-            mass = ((newRadius * newRadius) / ( radius * radius))*mass;
+            mass = ((newRadius * newRadius) / (radius * radius)) * mass;
             radius = newRadius;
-           
-        }
-        /*
-        public void ApplyGrav(GravityNode gnode)
-        {
-            //float distVects = DistanceVectors(position, gnode.position);
-            float distVects = Vector2.Distance(position, gnode.position);
-            if (distVects < gnode.rangeRadius)
-            {
-                double angle = Math.Atan2((gnode.position.Y - position.Y), (gnode.position.X - position.X));
-                float counterforce = 100 / distVects;
-                //float counterforce = 1;
-                float gravForce = gnode.Multiplier / (distVects * distVects * counterforce);
-                //float gravForce = gnode1.GravMultiplier;
-                float velX = (float)Math.Cos(angle) * gravForce;
-                float velY = (float)Math.Sin(angle) * gravForce;
-                Velocity.X += velX;
-                Velocity.Y += velY;
 
-            }
         }
-
-        public void ApplyRepel(RepelNode rnode)
-        {
-            float distVects = Vector2.Distance(Position, rnode.Position);
-            if (distVects < rnode.rangeRadius)
-            {
-                double angle = Math.Atan2((rnode.Position.Y - Position.Y), (rnode.Position.X - Position.X));
-                float counterforce = 100 / distVects;
-                //float counterforce = 1;
-                float gravForce = rnode.Multiplier / (distVects * distVects * counterforce);
-                //float gravForce = gnode1.GravMultiplier;
-                float velX = (float)Math.Cos(angle) * gravForce;
-                float velY = (float)Math.Sin(angle) * gravForce;
-                Velocity.X -= velX;
-                Velocity.Y -= velY;
-
-            }
-        }
-        public void ApplySlow(SlowNode snode)
-        {
-            float distVects = Vector2.Distance(Position, snode.Position);
-            if (distVects < snode.rangeRadius)
-            {
-                float velX = snode.Multiplier * Velocity.X;
-                float velY = snode.Multiplier * Velocity.Y;
-                if (!snode.temporarySlow)
-                {
-                    Velocity.X -= velX;
-                    Velocity.Y -= velY;
-                }
-                else
-                {
-                    Position.X -= (Velocity.X * snode.Multiplier);
-                    Position.Y -= (Velocity.Y * snode.Multiplier);
-                }
-            }
-            
-        }
-
-        public void ApplyTransfer(TransferNode transfernode)
-        {
-            float distVects = Vector2.Distance(Position, transfernode.Position);
-            if (distVects < transfernode.rangeRadius)
-            {
-                //double angle = Math.Atan2((transfernode.Position.Y - Position.Y), (transfernode.Position.X - Position.X));
-                //double newangle = angle + 3.14;
-                float newX = (transfernode.Position.X - Position.X) * 2.05f;
-                float newY = (transfernode.Position.Y - Position.Y) * 2.05f;
-                Position.X += newX;
-                Position.Y += newY;
-                //float counterforce = 100 / distVects;
-                //float counterforce = 1;
-                //float gravForce = gnode.Multiplier / (distVects * distVects * counterforce);
-                //float gravForce = gnode1.GravMultiplier;
-                //float velX = (float)Math.Cos(angle) * gravForce;
-                //float velY = (float)Math.Sin(angle) * gravForce;
-                //Velocity.X += velX;
-                //Velocity.Y += velY;
-
-            }
-        }
-        */
-
-        /*
-        private float DistanceVectors(Vector2 v1, Vector2 v2)
-        {
-            float dist = (float)Math.Sqrt((v1.X - v2.X) * (v1.X - v2.X) + (v1.Y - v2.Y) * (v1.Y - v2.Y));
-            return dist;
-        }
-        */
     }
 }

@@ -30,6 +30,7 @@ namespace OrbIt.GameObjects
             isActive = false;
             radius = 25;
             mass = 1;
+            collidable = true;
             
         }
         public Node(float Multiplier, float rangeRadius, float radius, Room room) : base(room)
@@ -41,6 +42,7 @@ namespace OrbIt.GameObjects
             velocity = new Vector2(0, 0);
             isActive = false;
             mass = 1;
+            collidable = true;
             
         }
         public Node(float Multiplier, float rangeRadius, Vector2 Pos, bool isAct, float radius, Room room)
@@ -52,6 +54,7 @@ namespace OrbIt.GameObjects
             position = Pos;
             isActive = isAct;
             mass = 1;
+            collidable = true;
             
         }
 

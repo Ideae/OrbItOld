@@ -54,8 +54,6 @@ namespace OrbIt
         public List<LightSource> lights = new List<LightSource>();
 
 
-
-
         public GameTime gametime = new GameTime();
         TimeSpan timespan = new TimeSpan();
 
@@ -99,6 +97,8 @@ namespace OrbIt
             spriteBatch = new SpriteBatch(GraphicsDevice);
             device = graphics.GraphicsDevice;
 
+            
+
 
             var form = (System.Windows.Forms.Form)System.Windows.Forms.Control.FromHandle(this.Window.Handle);
             form.Location = new System.Drawing.Point(0, 0);
@@ -124,6 +124,9 @@ namespace OrbIt
             targetOrb = null;
 
             room1 = new Room(this);
+
+            
+
 
             camera = new Camera();
             camera.position = new Vector2(0, 0);
@@ -191,7 +194,7 @@ namespace OrbIt
             {
                 LightSource light = new LightSource(0.5f, 0.5f, 0.5f, 0.9f, 0.0f, 3.0f, 1.0f, 100, textureDict[tn.whitecircle]);
                 float randscale = ((float)rand.Next(100) / (float)100.0f) * (light.scaleRange * 2) -light.scaleRange;
-                Console.WriteLine(randscale);
+                //Console.WriteLine(randscale);
                 light.scale += randscale;
                 light.position = new Vector2(rand.Next(room1.level.levelwidth), rand.Next(room1.level.levelheight));
                 light.scycle = true;
@@ -207,6 +210,8 @@ namespace OrbIt
             cb1.IsMoving = false;
             */
             weaponNumber = 1;
+
+           
         }
 
         /// <summary>
@@ -357,6 +362,10 @@ namespace OrbIt
             {
                 weaponNumber = 8;
             }
+            if (keybState.IsKeyDown(Keys.D9))
+            {
+                weaponNumber = 9;
+            }
             if (keybState.IsKeyDown(Keys.Q))
             {
                 weaponNumber = 11;
@@ -466,7 +475,7 @@ namespace OrbIt
                 float nvy = (mouseY - playerCenterY) * 0.001f * distv;
                 room1.player1.velocity.X = nvx;
                 room1.player1.velocity.Y = nvy;
-                Console.WriteLine(distv);
+                //Console.WriteLine(distv);
             
             }
 
@@ -481,8 +490,17 @@ namespace OrbIt
 
                 if (weaponNumber == 1)
                 {
-                    
+                    /*
                     Orb neworb1 = new Orb(room1);
+                    neworb1.setOrbValues(orbVelMult, 0.0f, 0.0f);
+                    Double angle2 = Math.Atan2((mouseY - playerCenterY), (mouseX - playerCenterX));
+                    neworb1.InitOrb(angle2, room1.player1.position);
+                    //neworb1.radius = initialOrbRadius;
+                    neworb1.setRadius(initialOrbRadius);
+                    room1.GameObjectDict["orbs"].Add(neworb1);
+                    //Console.WriteLine("WeaponNumber is 1. " + angle2);
+                    */
+                    PhaseOrb neworb1 = new PhaseOrb(room1);
                     neworb1.setOrbValues(orbVelMult, 0.0f, 0.0f);
                     Double angle2 = Math.Atan2((mouseY - playerCenterY), (mouseX - playerCenterX));
                     neworb1.InitOrb(angle2, room1.player1.position);
@@ -548,7 +566,9 @@ namespace OrbIt
                     */
                 }
                 else if (weaponNumber == 8)
-                { }
+                {
+                    room1.GameObjectDict["ranodes"].Add(new RightAngleNode(gravMult, gravRad, new Vector2(mouseX, mouseY), true, 25, room1));
+                }
                 else if (weaponNumber == 11)
                 {
                     Orb newBullet = new Orb(room1);
@@ -704,9 +724,10 @@ namespace OrbIt
             if (room1.PropertiesDict["mapOn"])
             room1.level.Draw(spriteBatch,camera);
 
-            room1.Draw(spriteBatch);
+            
 
-            spriteBatch.Draw(textureDict[tn.bluesphere], room1.player1.position - camera.position, null, Color.White, 0, new Vector2(textureDict[tn.bluesphere].Width / 2, textureDict[tn.bluesphere].Height / 2), 1, SpriteEffects.None, 0);
+
+            
             //draw the light sources
             if (room1.PropertiesDict["smallLightsOn"])
             {
@@ -718,6 +739,9 @@ namespace OrbIt
             if (targetOrb != null)
                 spriteBatch.Draw(textureDict[tn.orangesphere], targetOrb.position - camera.position, null, Color.White, 0, new Vector2(textureDict[tn.orangesphere].Width / 2, textureDict[tn.orangesphere].Height / 2), 3.0f, SpriteEffects.None, 0);
 
+
+            room1.Draw(spriteBatch);
+            spriteBatch.Draw(textureDict[tn.bluesphere], room1.player1.position - camera.position, null, Color.White, 0, new Vector2(textureDict[tn.bluesphere].Width / 2, textureDict[tn.bluesphere].Height / 2), 1, SpriteEffects.None, 0);
             /*
             if (cb1.isActive)
             {

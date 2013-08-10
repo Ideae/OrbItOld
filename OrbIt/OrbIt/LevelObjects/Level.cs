@@ -112,8 +112,13 @@ namespace OrbIt.LevelObjects
                         }
                         else if (colorMode.Equals("wave4"))
                         {
-                            tile[x, y, z].color = new Color(((tile[x, y, z].color.R + (x + 1) * 10) % 255), ((tile[x, y, z].color.G + (x + 1) * 10) % 255), ((tile[x, y, z].color.B + (x + 1) * 10) % 255));
-                            //tile[x, y, z].color = new Color(((tile[x, y, z].color.R + 2) % 255), ((tile[x, y, z].color.G + 2) % 255), ((tile[x, y, z].color.B + 2) % 255));
+                            //tile[x, y, z].color = new Color(((tile[x, y, z].color.R + ((30 + x + y + 1) / 2) * 10) % 255), ((tile[x, y, z].color.G + ((30 + x + y + 1) / 2) * 10) % 255), ((tile[x, y, z].color.B + ((30 + x + y + 1) / 2) * 10) % 255));
+                            tile[x, y, z].color = new Color((tile[x, y, z].color.R + (int)(y / 2)) % 255, (tile[x, y, z].color.G + (int)(y / 2)) % 255, (tile[x, y, z].color.B + (int)(y / 2)) % 255);
+                            spriteBatch.Draw(texture, new Vector2(x * tileLength.X + tileLength.X, y * tileLength.Y + tileLength.Y) - camera.position, null, tile[x, y, z].color, 0, new Vector2(tileLength.X, tileLength.Y), 1, SpriteEffects.None, 0);
+                        }
+                        else if (colorMode.Equals("wave5"))
+                        {
+                            //tile[x, y, z].color = new Color((tile[x, y, z].color.R + 1) % 255, (tile[x, y, z].color.G + 1) % 255, (tile[x, y, z].color.B + 1) % 255);
                             spriteBatch.Draw(texture, new Vector2(x * tileLength.X + tileLength.X, y * tileLength.Y + tileLength.Y) - camera.position, null, tile[x, y, z].color, 0, new Vector2(tileLength.X, tileLength.Y), 1, SpriteEffects.None, 0);
                         }
                         else {

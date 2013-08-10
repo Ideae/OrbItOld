@@ -117,6 +117,7 @@ namespace OrbIt.LevelObjects {
             addList("rnodes", new List<GameObject>());
             addList("snodes", new List<GameObject>());
             addList("tnodes", new List<GameObject>());
+            addList("ranodes", new List<GameObject>());
             addList("enemies", new List<GameObject>());
             addList("bullets", new List<GameObject>());
             //addList("lasers", new List<GameObject>());
@@ -141,6 +142,7 @@ namespace OrbIt.LevelObjects {
             PropertiesDict.Add("smallLightsOn", false);
             PropertiesDict.Add("bulletsOn", false);
             PropertiesDict.Add("enemiesOn", false);
+            PropertiesDict.Add("friction", false);
         }
     }
 }

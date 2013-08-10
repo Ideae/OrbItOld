@@ -17,10 +17,16 @@ namespace OrbIt
         String parentnode;
         String lastItem;
         Game1 game;
+
+        Random seed;
+        Random rand;
+
         public GameForm(Game1 game)
         {
             this.game = game;
             InitializeComponent();
+            seed = new Random(1000);
+            rand = new Random(seed.Next());
             
         }
 
@@ -82,15 +88,31 @@ namespace OrbIt
 
         private void comboBoxColormode_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (comboBoxColormode.Text.Equals("normal")) game.room1.level.colorMode = "normal";
             else if (comboBoxColormode.Text.Equals("disco")) game.room1.level.colorMode = "disco";
-            else if (comboBoxColormode.Text.Equals("wave") || comboBoxColormode.Text.Equals("wave2") ||comboBoxColormode.Text.Equals("wave3")) 
+            else
             {
+                
                 game.room1.level.colorMode = comboBoxColormode.Text;
                 for (int x = 0; x < game.room1.level.tileAmount.X; x++)
                     for (int y = 0; y < game.room1.level.tileAmount.Y; y++)
                         for (int z = 0; z < game.room1.level.tileAmount.Z; z++)
-                        { game.room1.level.tile[x, y, z].color = new Microsoft.Xna.Framework.Color(((x + 1) * 15) % 255, ((y + 1) * 15) % 255, ((z + 1) * 15) % 255); }
+                        {
+                            int nextRand = rand.Next(3);
+                            if (nextRand == 0)
+                            {
+                                nextRand = rand.Next(50);
+                                game.room1.level.tile[x, y, z].color = new Microsoft.Xna.Framework.Color(((x + 1) * nextRand) % 255, ((y + 1) * nextRand) % 255, ((z + 1) * nextRand) % 255);
+                            }
+                            else
+                            {
+                                int levelwidth = (int)game.room1.level.tileAmount.X;
+                                int levelheight = (int)game.room1.level.tileAmount.Y;
+                                game.room1.level.tile[x, y, z].color = new Microsoft.Xna.Framework.Color((int)(x / levelwidth) * 255, (int)(y / levelheight) * 255, 125);
+                            
+                            }
+                        }
             }
         }
 
@@ -204,6 +226,15 @@ namespace OrbIt
                     mo.velocity.Y *= 0.5f;
                 }
             }
+        }
+
+        private void frictionCB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (frictionCB.Checked)
+            {
+                game.room1.PropertiesDict["friction"] = true;
+            }
+            else game.room1.PropertiesDict["friction"] = false;
         }
 
         

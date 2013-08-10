@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Game");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("VelocityMultiplier");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Mass");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Orb Radius");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Orb", new System.Windows.Forms.TreeNode[] {
-            treeNode2,
-            treeNode3,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("GravityMultiplier");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("GravityNode", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Game");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("VelocityMultiplier");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Mass");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Orb Radius");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Orb", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode10,
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("GravityMultiplier");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("GravityNode", new System.Windows.Forms.TreeNode[] {
+            treeNode13});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.modifyButton = new System.Windows.Forms.Button();
@@ -56,30 +56,31 @@
             this.bulletsOnCB = new System.Windows.Forms.CheckBox();
             this.clearNodesB = new System.Windows.Forms.Button();
             this.slowdownB = new System.Windows.Forms.Button();
+            this.frictionCB = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // treeView1
             // 
             this.treeView1.Location = new System.Drawing.Point(12, 36);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Game";
-            treeNode1.Text = "Game";
-            treeNode2.Name = "VelMult";
-            treeNode2.Text = "VelocityMultiplier";
-            treeNode3.Name = "Mass";
-            treeNode3.Text = "Mass";
-            treeNode4.Name = "OrbRadius";
-            treeNode4.Text = "Orb Radius";
-            treeNode5.Name = "Orb";
-            treeNode5.Text = "Orb";
-            treeNode6.Name = "GravMult";
-            treeNode6.Text = "GravityMultiplier";
-            treeNode7.Name = "GravityNode";
-            treeNode7.Text = "GravityNode";
+            treeNode8.Name = "Game";
+            treeNode8.Text = "Game";
+            treeNode9.Name = "VelMult";
+            treeNode9.Text = "VelocityMultiplier";
+            treeNode10.Name = "Mass";
+            treeNode10.Text = "Mass";
+            treeNode11.Name = "OrbRadius";
+            treeNode11.Text = "Orb Radius";
+            treeNode12.Name = "Orb";
+            treeNode12.Text = "Orb";
+            treeNode13.Name = "GravMult";
+            treeNode13.Text = "GravityMultiplier";
+            treeNode14.Name = "GravityNode";
+            treeNode14.Text = "GravityNode";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode5,
-            treeNode7});
+            treeNode8,
+            treeNode12,
+            treeNode14});
             this.treeView1.Size = new System.Drawing.Size(171, 136);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -176,7 +177,9 @@
             "disco",
             "wave",
             "wave2",
-            "wave3"});
+            "wave3",
+            "wave4",
+            "wave5"});
             this.comboBoxColormode.Location = new System.Drawing.Point(183, 186);
             this.comboBoxColormode.Name = "comboBoxColormode";
             this.comboBoxColormode.Size = new System.Drawing.Size(121, 21);
@@ -245,11 +248,23 @@
             this.slowdownB.UseVisualStyleBackColor = true;
             this.slowdownB.Click += new System.EventHandler(this.slowdownB_Click);
             // 
+            // frictionCB
+            // 
+            this.frictionCB.AutoSize = true;
+            this.frictionCB.Location = new System.Drawing.Point(11, 332);
+            this.frictionCB.Name = "frictionCB";
+            this.frictionCB.Size = new System.Drawing.Size(60, 17);
+            this.frictionCB.TabIndex = 18;
+            this.frictionCB.Text = "Friction";
+            this.frictionCB.UseVisualStyleBackColor = true;
+            this.frictionCB.CheckedChanged += new System.EventHandler(this.frictionCB_CheckedChanged);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 509);
+            this.Controls.Add(this.frictionCB);
             this.Controls.Add(this.slowdownB);
             this.Controls.Add(this.clearNodesB);
             this.Controls.Add(this.bulletsOnCB);
@@ -292,6 +307,7 @@
         private System.Windows.Forms.CheckBox bulletsOnCB;
         private System.Windows.Forms.Button clearNodesB;
         private System.Windows.Forms.Button slowdownB;
+        private System.Windows.Forms.CheckBox frictionCB;
 
     }
 }

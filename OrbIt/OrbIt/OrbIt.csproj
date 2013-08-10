@@ -123,6 +123,8 @@
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Laser.cs" />
     <Compile Include="GameObjects\MoveableObject.cs" />
+    <Compile Include="GameObjects\PhaseOrb.cs" />
+    <Compile Include="GameObjects\RightAngleNode.cs" />
     <Compile Include="GameObjects\Shape.cs" />
     <Compile Include="IGravity.cs" />
     <Compile Include="LevelObjects\Camera.cs" />

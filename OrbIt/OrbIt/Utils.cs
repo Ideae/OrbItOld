@@ -14,7 +14,7 @@ namespace OrbIt {
         public static bool checkCollision(MoveableObject o1, MoveableObject o2)
         {
             
-            if (Vector2.DistanceSquared(o1.position, o2.position) <= (((o1.radius) + (o2.radius)) * ((o1.radius) + (o2.radius))))
+            if (Vector2.DistanceSquared(o1.position, o2.position) <= (((o1.radius) + (o2.radius)) * ((o1.radius) + (o2.radius))) && o1.collidable && o2.collidable)
             {
                 return true;
             }

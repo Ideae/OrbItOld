@@ -18,6 +18,8 @@ namespace OrbIt.GameObjects {
         public float radius;
         public float mass;
         public Room room;
+        public bool collidable;
+
 
         public MoveableObject(Room room)
         {
@@ -28,6 +30,7 @@ namespace OrbIt.GameObjects {
         {
             if (isActive)
             {
+                
                 friction();
                 wallBounce();
             
@@ -38,7 +41,8 @@ namespace OrbIt.GameObjects {
 
         public void friction()
         {
-            velocity *= 0.995f;
+            if (room.PropertiesDict["friction"])
+                velocity *= 0.995f;
         }
 
         public void wallBounce()
