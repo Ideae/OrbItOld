@@ -62,11 +62,14 @@ namespace OrbIt.LevelObjects
                     tile[j, i, 0] = new Tile();
                     //tile[j, i, 0].color = Color.White;
                     tile[j,i,0].tilecode = codeLine[j];
+                    tile[j, i, 0].collisioncode = tileset.getCollisionCode(codeLine[j]);
                 }
 
             }
         
         }
+
+
 
         public void Draw(SpriteBatch spriteBatch,Camera camera)
         {

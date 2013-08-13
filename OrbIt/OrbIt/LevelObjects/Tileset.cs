@@ -9,34 +9,43 @@ namespace OrbIt.LevelObjects
     public class Tileset
     {
         List<String> tilecodes;
+        List<String> collisioncodes;
         List<Texture2D> textures;
         Texture2D defaulttexture;
 
         public Tileset()
         {
             tilecodes = new List<String>();
+            collisioncodes = new List<String>();
             textures = new List<Texture2D>();
             //defaulttexture = new Texture2D
         }
-        public Tileset(List<String> tilecodes, List<Texture2D> textures)
+        public Tileset(List<String> tilecodes, List<String> collisioncodes, List<Texture2D> textures)
         {
             this.tilecodes = tilecodes;
             this.textures = textures;
+            this.collisioncodes = collisioncodes;
         }
 
-        public void createTileset(String codes, List<Texture2D> textures)
+        public void createTileset(String tilecodes, String collisioncodes, List<Texture2D> textures)
         {
             this.textures = textures;
 
-            String[] codesarray = codes.Split(' ');
-            tilecodes = new List<String>();
-            for (int i = 0; i < codesarray.Length; i++)
+            String[] tilecodesarray = tilecodes.Split(' ');
+            String[] collisioncodesarray = collisioncodes.Split(' ');
+            this.tilecodes = new List<String>();
+            this.collisioncodes = new List<String>();
+            for (int i = 0; i < tilecodesarray.Length; i++)
             { 
-                tilecodes.Add(codesarray[i]);
+                this.tilecodes.Add(tilecodesarray[i]);
+            }
+            for (int i = 0; i < collisioncodesarray.Length; i++)
+            {
+                this.collisioncodes.Add(collisioncodesarray[i]);
             }
         }
 
-        public void setValues(List<String> tilecodes, List<Texture2D> textures)
+        public void setValues(List<String> tilecodes, List<String> collisioncodes, List<Texture2D> textures)
         {
             this.tilecodes = tilecodes;
             this.textures = textures;
@@ -57,6 +66,19 @@ namespace OrbIt.LevelObjects
             }
             return null;
             //return defaulttexture;
+        }
+
+        public String getCollisionCode(String code)
+        {
+            for (int i = 0; i < tilecodes.Count; i++)
+            {
+                if (code.Equals(tilecodes[i]))
+                {
+                    Console.WriteLine(collisioncodes[i]);
+                    return collisioncodes[i];
+                }
+            }
+            return "0";
         }
 
         

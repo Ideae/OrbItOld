@@ -28,10 +28,13 @@ namespace OrbIt.GameObjects
         public LightSource lightsource;
         public Texture2D texture;
 
+        float r1, g1, b1;
+        //int seed;
+
         public Queue<Vector2> positions;
         int timer;
 
-        public PhaseOrb(Room room)
+        public PhaseOrb(Room room,int seed)
             : base(room)
         {
             isActive = false;
@@ -47,9 +50,15 @@ namespace OrbIt.GameObjects
             mass = 1;
             collidable = true;
 
-            texture = room.game1.textureDict[Game1.tn.orangesphere];
+            texture = room.game1.textureDict[Game1.tn.whitecircle];
             positions = new Queue<Vector2>();
             timer = 0;
+
+            Random rand1 = new Random(seed);
+           
+            r1 = rand1.Next(255); r1 = r1 / 255;
+            g1 = rand1.Next(255); g1 = g1 / 255;
+            b1 = rand1.Next(255); b1 = b1 / 255;
         }
 
         public PhaseOrb(float vmult, float amult, float jmult, Room room)
@@ -66,10 +75,14 @@ namespace OrbIt.GameObjects
             textureNum = 0;
             radius = 25;
             mass = 1;
-            texture = room.game1.textureDict[Game1.tn.orangesphere];
+            texture = room.game1.textureDict[Game1.tn.whitecircle];
             collidable = true;
             positions = new Queue<Vector2>();
             timer = 0;
+            Random rand1 = new Random(1000);
+            r1 = rand1.Next(255); r1 = r1 / 255;
+            g1 = rand1.Next(255); g1 = g1 / 255;
+            b1 = rand1.Next(255); b1 = b1 / 255;
         }
 
         public void InitOrb(Double angle, Vector2 startPos)
@@ -179,11 +192,23 @@ namespace OrbIt.GameObjects
                 }
                 else
                 {
+                    float ff = 0;
+                    Color col = new Color(0, 0, 0, 0.3f);
+                    float a, b, c;
+                    a = b = c = 0;
+
                     foreach (Vector2 pos in positions)
                     {
-                        spritebatch.Draw(texture, pos - room.game1.camera.position, null, Color.White, 0, new Vector2(texture.Width / 2, texture.Height / 2), 1, SpriteEffects.None, 0);
+                        //ff += 0.05f;
+                        a += r1 / 10;
+                        b += g1 / 10;
+                        c += b1 / 10;
+                        col = new Color(a, b, c, 0.3f);
+                        spritebatch.Draw(texture, pos - room.game1.camera.position, null, col, 0, new Vector2(texture.Width / 2, texture.Height / 2), 1, SpriteEffects.None, 0);
+                        //spritebatch.Draw(texture, pos - room.game1.camera.position, null, new Color(10, 200, 10, 255), 0, new Vector2(texture.Width / 2, texture.Height / 2), 1, SpriteEffects.None, 0);
                     }
-                    spritebatch.Draw(texture, position - room.game1.camera.position, null, Color.White, 0, new Vector2(texture.Width / 2, texture.Height / 2), 1, SpriteEffects.None, 0);
+
+                    spritebatch.Draw(texture, position - room.game1.camera.position, null, col, 0, new Vector2(texture.Width / 2, texture.Height / 2), 1, SpriteEffects.None, 0);
                 }
             }
         }

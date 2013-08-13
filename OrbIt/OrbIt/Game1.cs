@@ -62,6 +62,9 @@ namespace OrbIt
         private MouseState oldState;
         int weaponNumber;
 
+        Rectangle rect1;
+        
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -125,8 +128,12 @@ namespace OrbIt
 
             room1 = new Room(this);
 
+            rect1 = new Rectangle(100, 100, 200, 200);
             
 
+
+
+            
 
             camera = new Camera();
             camera.position = new Vector2(0, 0);
@@ -158,12 +165,15 @@ namespace OrbIt
             txs.Add(textureDict[tn.grass]);
             txs.Add(textureDict[tn.whitecircle]);
             String txcodes = "A B";
+            String clcodes = "0 1";
             room1.tileset = new Tileset();
-            room1.tileset.createTileset(txcodes, txs);
+            room1.tileset.createTileset(txcodes, clcodes, txs);
 
             String[] mapTileCodes = new String[24];
-            mapTileCodes[0] = "A B A B A B A B A B A B A B A B A B A B";
-            mapTileCodes[1] = "B A B A B A B A B A B A B A B A B A B A";
+            //mapTileCodes[0] = "A B A B A B A B A B A B A B A B A B A B";
+            //mapTileCodes[1] = "B A B A B A B A B A B A B A B A B A B A";
+            mapTileCodes[0] = "A A A A A A A A A A A A A A A B A A A A";
+            mapTileCodes[1] = "A A A B A A A A A A A A A A A A A A A A";
 
             for (int i = 2; i < mapTileCodes.Length; i++)
             {
@@ -179,8 +189,9 @@ namespace OrbIt
 
             room1.level = new Level();
             room1.level.tileLength = new Vector3(25, 25, 20);
-            room1.level.readTiles(mapTileCodes);
             room1.level.tileset = room1.tileset;
+            room1.level.readTiles(mapTileCodes);
+            
             //level1 = new Level("Zack'sLevel",new Vector3(50, 50, 20),new Vector3(20, 12, 0), 
 
 
@@ -500,7 +511,8 @@ namespace OrbIt
                     room1.GameObjectDict["orbs"].Add(neworb1);
                     //Console.WriteLine("WeaponNumber is 1. " + angle2);
                     */
-                    PhaseOrb neworb1 = new PhaseOrb(room1);
+                    
+                    PhaseOrb neworb1 = new PhaseOrb(room1,rand.Next(10000));
                     neworb1.setOrbValues(orbVelMult, 0.0f, 0.0f);
                     Double angle2 = Math.Atan2((mouseY - playerCenterY), (mouseX - playerCenterX));
                     neworb1.InitOrb(angle2, room1.player1.position);
@@ -741,7 +753,7 @@ namespace OrbIt
 
 
             room1.Draw(spriteBatch);
-            spriteBatch.Draw(textureDict[tn.bluesphere], room1.player1.position - camera.position, null, Color.White, 0, new Vector2(textureDict[tn.bluesphere].Width / 2, textureDict[tn.bluesphere].Height / 2), 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(textureDict[tn.whitecircle], room1.player1.position - camera.position, null, Color.White, 0, new Vector2(textureDict[tn.bluesphere].Width / 2, textureDict[tn.bluesphere].Height / 2), 1, SpriteEffects.None, 0);
             /*
             if (cb1.isActive)
             {
@@ -783,11 +795,32 @@ namespace OrbIt
             //Color c1 = new Color(100.0f, 200.0f, 0.0f, 0.5f);
             //spriteBatch.Draw(whiteCircle, new Vector2(300,300), null, c1, 0, new Vector2(50,50), 1, SpriteEffects.None, 0);
             //if (lightsource.col.R 
+
+            spriteBatch.Draw(textureDict[tn.whitetile], rect1, Color.Red);
+
+            //if (Utils.pointInRectangle((int)room1.player1.position.X, (int)room1.player1.position.Y, rect1.X, rect1.Y, rect1.X + rect1.Width, rect1.Y, rect1.X + rect1.Width, rect1.Y + rect1.Height, rect1.X, rect1.Y + rect1.Width))
+            if (Utils.pointInRectangle((int)room1.player1.position.X, (int)room1.player1.position.Y, rect1.Left, rect1.Bottom, rect1.Right, rect1.Bottom, rect1.Right, rect1.Top, rect1.Left, rect1.Top))
+            {
+                spriteBatch.Draw(textureDict[tn.whitetile], new Rectangle(400,400,20,20), Color.Blue);
+            }
+            if (Utils.intersectCircleRectCorners((int)room1.player1.position.X, (int)room1.player1.position.Y, (int)room1.player1.radius, rect1.Left, rect1.Bottom, rect1.Right, rect1.Bottom, rect1.Right, rect1.Top, rect1.Left, rect1.Top))
+            {
+                spriteBatch.Draw(textureDict[tn.whitetile], new Rectangle(450, 450, 20, 20), Color.Orange);
+            }
+            if (Utils.intersectCircleRect((int)room1.player1.position.X, (int)room1.player1.position.Y, (int) room1.player1.radius, rect1.Left, rect1.Bottom, rect1.Right, rect1.Bottom, rect1.Right, rect1.Top, rect1.Left, rect1.Top))
+            {
+                spriteBatch.Draw(textureDict[tn.whitetile], new Rectangle(500, 500, 20, 20), Color.Yellow);
+            }
+
+
+
             if (room1.PropertiesDict["fullLightOn"])
             {
                 lightsource.Draw(spriteBatch, lightsource.position - camera.position);
             }
             room1.player1.playerLight.Draw(spriteBatch, room1.player1.position - camera.position);
+
+            
 
             Rectangle rect = new Rectangle(200, 200, weaponNumber*10, 10);
             //spriteBatch.Draw(transferTexture, rect, Color.White);
