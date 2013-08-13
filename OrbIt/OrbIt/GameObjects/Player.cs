@@ -17,7 +17,7 @@ namespace OrbIt.GameObjects
         public float VelMultiplier;
         public int hitpoints;
         public int score;
-        public float radius;
+        //public float radius;
         public LightSource playerLight;
 
         public Player(Room room) : base(room)

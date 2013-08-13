@@ -55,6 +55,7 @@ namespace OrbIt.LevelObjects {
             setDefaultProperties();
             camera = new Camera();
             player1 = new Player(this);
+            player1.radius = 25;
             game1 = game;
 
         }
@@ -68,7 +69,8 @@ namespace OrbIt.LevelObjects {
             {
                 foreach (GameObject gameobject in entry.Value)
                 {
-                    checkLevelObjectCollisions(gameobject);
+                    //if (PropertiesDict["collisionOn"])
+                        checkLevelObjectCollisions(gameobject);
                     gameobject.Update(gametime);
                 }
             }
@@ -104,28 +106,63 @@ namespace OrbIt.LevelObjects {
                 foreach (GameObject gameobject in entry.Value)
                 {
                     gameobject.Draw(spritebatch);
+
+
                 }
             }
 
+            for (int i = 0; i < level.tileAmount.X; i++)
+            {
+                for (int j = 0; j < level.tileAmount.Y; j++)
+                {
+                    //if the collision code is "1" (collidable). 
+                    //add more cases later for different terrain
+                    if (level.tile[i, j, 0].collisioncode.Equals("1"))
+                    {
+                        //Console.WriteLine(i + "  " + j);
+                        int x = i * (int)level.tileLength.X;
+                        int y = j * (int)level.tileLength.Y;
+                        //bounding box for tile
+                        Rectangle box = new Rectangle(x, y, (int)level.tileLength.X, (int)level.tileLength.Y);
+
+                        //spritebatch.Draw(game1.textureDict[OrbIt.Game1.tn.whitetile], box, Color.Blue);
+                        
+                    }
+                }
+            }
 
         
         }
-
+        //Check if any game objects collide with any collidable tiles on the map(level)
         public void checkLevelObjectCollisions(GameObject gameobject)
         {
             if (gameobject is MoveableObject)
             {
                 MoveableObject mo = (MoveableObject)gameobject;
-
+                //for all the tiles
                 for (int i = 0; i < level.tileAmount.X; i++)
                 {
                     for (int j = 0; j < level.tileAmount.Y; j++)
-                    { 
-                        int x = i * (int)level.tileLength.X;
-                        int y = j * (int)level.tileLength.Y;
+                    {
+                        //if the collision code is "1" (collidable). 
+                        //add more cases later for different terrain
+                        if (level.tile[i, j, 0].collisioncode.Equals("1"))
+                        {
+                            int x = i * (int)level.tileLength.X;
+                            int y = j * (int)level.tileLength.Y;
+                            //bounding box for tile
+                            Rectangle box = new Rectangle(x, y,(int)level.tileLength.X, (int)level.tileLength.Y);
 
-                        Rectangle box = new Rectangle(x, y, x + (int)level.tileLength.X, y + (int)level.tileLength.Y);
 
+                            if (Utils.intersectCircleRect(mo, box.Left, box.Bottom, box.Right, box.Bottom, box.Right, box.Top, box.Left, box.Top))
+                            {
+                                Console.WriteLine("Side");
+                            }
+                            if (Utils.intersectCircleRectCorners(mo, box.Left, box.Bottom, box.Right, box.Bottom, box.Right, box.Top, box.Left, box.Top))
+                            {
+                                Console.WriteLine("Corner");
+                            }
+                        }
                     }
                 }
             

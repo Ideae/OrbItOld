@@ -162,7 +162,7 @@ namespace OrbIt
 
             //level1, tileset1
             List<Texture2D> txs = new List<Texture2D>();
-            txs.Add(textureDict[tn.grass]);
+            txs.Add(textureDict[tn.whitetile]);
             txs.Add(textureDict[tn.whitecircle]);
             String txcodes = "A B";
             String clcodes = "0 1";
@@ -172,23 +172,38 @@ namespace OrbIt
             String[] mapTileCodes = new String[24];
             //mapTileCodes[0] = "A B A B A B A B A B A B A B A B A B A B";
             //mapTileCodes[1] = "B A B A B A B A B A B A B A B A B A B A";
-            mapTileCodes[0] = "A A A A A A A A A A A A A A A B A A A A";
-            mapTileCodes[1] = "A A A B A A A A A A A A A A A A A A A A";
+            mapTileCodes[0] = "A A B A A A A A A A A A A A A A A A A A";
+            mapTileCodes[1] = "A A B A A A A A B A A A A A A A A A A A";
+            mapTileCodes[2] = "A A B A A A A A A A A A A A A A A A A A";
+            mapTileCodes[3] = "A A B A A A A A A A A A A A A B A A A A";
+            mapTileCodes[4] = "A A B A A A A A A A A A A A A A A A A A";
+            mapTileCodes[5] = "A A B A A A A A A A A A A A A A A A A A";
+            mapTileCodes[6] = "A A A A A B A A A A A A A A A A A A A A";
+            mapTileCodes[7] = "A A A A A A A A A A A A A A A A A A A A";
+            mapTileCodes[8] = "A A A A A A A A A A A A A A A A A A A A";
+            mapTileCodes[9] = "A A A A A A A A A B A A A A A A A A A A";
+            mapTileCodes[10] = "A A A A A A A A A A A A A A A A A A A A";
+            mapTileCodes[11] = "A A A A A A A A A A A A A A A A A A A A";
+            
 
-            for (int i = 2; i < mapTileCodes.Length; i++)
+            for (int i = 12; i < mapTileCodes.Length; i++)
             {
+                mapTileCodes[i] = mapTileCodes[i-12];
+                /*
                 if (i % 2 == 0)
                     mapTileCodes[i] = mapTileCodes[0];
                 else
                     mapTileCodes[i] = mapTileCodes[1];
+                */
             }
             for (int i = 0; i < mapTileCodes.Length; i++)
             {
-                mapTileCodes[i] = mapTileCodes[i] + " " + mapTileCodes[i];
+                //mapTileCodes[i] = mapTileCodes[i] + " " + mapTileCodes[i];
+
             }
 
             room1.level = new Level();
-            room1.level.tileLength = new Vector3(25, 25, 20);
+            room1.level.tileLength = new Vector3(50, 50, 20);
             room1.level.tileset = room1.tileset;
             room1.level.readTiles(mapTileCodes);
             
@@ -795,7 +810,7 @@ namespace OrbIt
             //Color c1 = new Color(100.0f, 200.0f, 0.0f, 0.5f);
             //spriteBatch.Draw(whiteCircle, new Vector2(300,300), null, c1, 0, new Vector2(50,50), 1, SpriteEffects.None, 0);
             //if (lightsource.col.R 
-
+            /*
             spriteBatch.Draw(textureDict[tn.whitetile], rect1, Color.Red);
 
             //if (Utils.pointInRectangle((int)room1.player1.position.X, (int)room1.player1.position.Y, rect1.X, rect1.Y, rect1.X + rect1.Width, rect1.Y, rect1.X + rect1.Width, rect1.Y + rect1.Height, rect1.X, rect1.Y + rect1.Width))
@@ -803,15 +818,15 @@ namespace OrbIt
             {
                 spriteBatch.Draw(textureDict[tn.whitetile], new Rectangle(400,400,20,20), Color.Blue);
             }
-            if (Utils.intersectCircleRectCorners((int)room1.player1.position.X, (int)room1.player1.position.Y, (int)room1.player1.radius, rect1.Left, rect1.Bottom, rect1.Right, rect1.Bottom, rect1.Right, rect1.Top, rect1.Left, rect1.Top))
+            if (Utils.intersectCircleRectCorners(room1.player1, rect1.Left, rect1.Bottom, rect1.Right, rect1.Bottom, rect1.Right, rect1.Top, rect1.Left, rect1.Top))
             {
                 spriteBatch.Draw(textureDict[tn.whitetile], new Rectangle(450, 450, 20, 20), Color.Orange);
             }
-            if (Utils.intersectCircleRect((int)room1.player1.position.X, (int)room1.player1.position.Y, (int) room1.player1.radius, rect1.Left, rect1.Bottom, rect1.Right, rect1.Bottom, rect1.Right, rect1.Top, rect1.Left, rect1.Top))
+            if (Utils.intersectCircleRect(room1.player1, rect1.Left, rect1.Bottom, rect1.Right, rect1.Bottom, rect1.Right, rect1.Top, rect1.Left, rect1.Top))
             {
                 spriteBatch.Draw(textureDict[tn.whitetile], new Rectangle(500, 500, 20, 20), Color.Yellow);
             }
-
+            */
 
 
             if (room1.PropertiesDict["fullLightOn"])

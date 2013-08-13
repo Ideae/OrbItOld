@@ -131,7 +131,7 @@ namespace OrbIt.GameObjects
                         {
                             MoveableObject moveableobject = (MoveableObject)gameobject;
                             //ApplyEffect(moveableobject);
-                            if (Utils.checkCollision(this,moveableobject))
+                            if (room.PropertiesDict["collisionOn"] && Utils.checkCollision(this,moveableobject))
                                 Utils.resolveCollision(this, moveableobject);
                         }
                     }

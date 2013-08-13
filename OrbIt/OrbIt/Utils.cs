@@ -99,26 +99,69 @@ namespace OrbIt {
             return false;
         }
 
-        public static bool intersectCircleRectCorners(int px, int py, int rad, int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy)
+        public static bool intersectCircleRectCorners(MoveableObject mo, int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy)
         {
-            if (pointInCircle(px, py, rad, ax, ay)
-                || pointInCircle(px, py, rad, bx, by)
-                || pointInCircle(px, py, rad, cx, cy)
-                || pointInCircle(px, py, rad, dx, dy))
-                return true;//make circle bounce in weird way if this is the case
+            int px = (int) mo.position.X;
+            int py = (int) mo.position.Y;
+            int rad = (int) mo.radius;
+
+            if (pointInCircle(px, py, rad, ax, ay))
+            {
+                float component = (float)Math.Sqrt((Math.Pow(Vector2.Distance(new Vector2(0,0), mo.velocity),2)/2));
+                mo.velocity = new Vector2(-component, component);
+                return true;
+            }
+            else if (pointInCircle(px, py, rad, bx, by))
+            {
+                float component = (float)Math.Sqrt((Math.Pow(Vector2.Distance(new Vector2(0, 0), mo.velocity), 2) / 2));
+                mo.velocity = new Vector2(component, component);
+                return true;
+            }
+            else if (pointInCircle(px, py, rad, cx, cy))
+            {
+                float component = (float)Math.Sqrt((Math.Pow(Vector2.Distance(new Vector2(0, 0), mo.velocity), 2) / 2));
+                mo.velocity = new Vector2(component, -component);
+                return true;
+            }
+            else if (pointInCircle(px, py, rad, dx, dy))
+            {
+                float component = (float)Math.Sqrt((Math.Pow(Vector2.Distance(new Vector2(0, 0), mo.velocity), 2) / 2));
+                mo.velocity = new Vector2(-component, -component);
+                return true;
+            }
+                //return true;//make circle bounce in weird way if this is the case
             return false;
         }
 
-        public static bool intersectCircleRect(int px, int py, int rad, int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy)
+        public static bool intersectCircleRect(MoveableObject mo, int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy)
         {
             //if (pointInRectangle(px, py, ax, ay, bx, by, cx, cy, dx, dy)) return true;
+            int px = (int)mo.position.X;
+            int py = (int)mo.position.Y;
+            int rad = (int) mo.radius;
+            //Console.WriteLine(px + " " + py + " " + rad);
 
-            if (intersectCircleLine(px, py, rad, ax, ay, bx, by)
-                || intersectCircleLine(px, py, rad, bx, by, cx, cy)
-                || intersectCircleLine(px, py, rad, cx, cy, dx, dy)
-                || intersectCircleLine(px, py, rad, dx, dy, ax, ay)
-                )
+            if (intersectCircleLine(px, py, rad, ax, ay, bx, by))
+            {
+                mo.velocity.Y *= -1;
                 return true;
+            }
+            else if (intersectCircleLine(px, py, rad, bx, by, cx, cy))
+            {
+                mo.velocity.X *= -1;
+                return true;
+            }
+            else if (intersectCircleLine(px, py, rad, cx, cy, dx, dy))
+            {
+                mo.velocity.Y *= -1;
+                return true;
+            }
+            else if (intersectCircleLine(px, py, rad, dx, dy, ax, ay))
+            {
+                mo.velocity.X *= -1;
+                return true;
+            }
+                
 
 
             return false;
