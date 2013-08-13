@@ -68,6 +68,7 @@ namespace OrbIt.LevelObjects {
             {
                 foreach (GameObject gameobject in entry.Value)
                 {
+                    checkLevelObjectCollisions(gameobject);
                     gameobject.Update(gametime);
                 }
             }
@@ -108,6 +109,27 @@ namespace OrbIt.LevelObjects {
 
 
         
+        }
+
+        public void checkLevelObjectCollisions(GameObject gameobject)
+        {
+            if (gameobject is MoveableObject)
+            {
+                MoveableObject mo = (MoveableObject)gameobject;
+
+                for (int i = 0; i < level.tileAmount.X; i++)
+                {
+                    for (int j = 0; j < level.tileAmount.Y; j++)
+                    { 
+                        int x = i * (int)level.tileLength.X;
+                        int y = j * (int)level.tileLength.Y;
+
+                        Rectangle box = new Rectangle(x, y, x + (int)level.tileLength.X, y + (int)level.tileLength.Y);
+
+                    }
+                }
+            
+            }
         }
 
         public void setDefaultLists()
